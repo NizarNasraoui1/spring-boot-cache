@@ -28,7 +28,6 @@ public class CustomerController
 	@GetMapping("/update-cache/{id}")
 	@CachePut(value="customerInfo",key = "#id")
 	public String updateCache(@PathVariable("id")int id) throws InterruptedException {
-		System.out.println("customer information from cache");
 		Thread.sleep(3000);
 		return "response";
 	}
