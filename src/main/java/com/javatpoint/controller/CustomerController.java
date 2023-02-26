@@ -10,20 +10,21 @@ import com.javatpoint.model.Customer;
 @RestController
 public class CustomerController 
 {
-	@GetMapping("/cache-with-condition/{id}")
-	//defines a cache for method's return value
-	@Cacheable(value="customerInfo",condition = "#id>20")
-	public String cache(@PathVariable("id")int id) throws InterruptedException {
-		Thread.sleep(3000);
-		return "response";
-	}
-
 	@GetMapping("/cache/with-key/{id}")
 	@Cacheable(value="customerInfo",key = "#id")
 	public String cacheWithKey(@PathVariable("id")int id,@PathVariable("key")int key) throws InterruptedException {
 		Thread.sleep(3000);
 		return "response";
 	}
+
+	@GetMapping("/cache-with-condition/{id}")
+	@Cacheable(value="customerInfo",condition = "#id>20")
+	public String cache(@PathVariable("id")int id) throws InterruptedException {
+		Thread.sleep(3000);
+		return "response";
+	}
+
+
 
 	@GetMapping("/update-cache/{id}")
 	@CachePut(value="customerInfo",key = "#id")
